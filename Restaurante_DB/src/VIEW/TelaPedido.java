@@ -1,4 +1,3 @@
-
 package VIEW;
 
 import java.sql.Date;
@@ -17,10 +16,8 @@ public class TelaPedido extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtcliente = new javax.swing.JTextField();
         txtdata = new javax.swing.JTextField();
         txtvalor = new javax.swing.JTextField();
         btnsalvar = new javax.swing.JButton();
@@ -35,9 +32,6 @@ public class TelaPedido extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 0, 24)); // NOI18N
         jLabel1.setText("Tela Pedido");
-
-        jLabel2.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
-        jLabel2.setText("Cliente");
 
         jLabel3.setFont(new java.awt.Font("Bell MT", 0, 14)); // NOI18N
         jLabel3.setText("Data Pedido");
@@ -93,48 +87,42 @@ public class TelaPedido extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
-                .addComponent(btnsalvar)
-                .addGap(58, 58, 58)
-                .addComponent(btnatualizar)
-                .addGap(63, 63, 63)
-                .addComponent(btnapagar)
-                .addGap(61, 61, 61)
-                .addComponent(btnlistar)
-                .addGap(104, 104, 104))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
+                        .addContainerGap()
+                        .addComponent(btnvoltar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtcliente)
                             .addComponent(txtdata)
                             .addComponent(txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnvoltar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(99, 99, 99)
+                        .addComponent(btnsalvar)
+                        .addGap(58, 58, 58)
+                        .addComponent(btnatualizar)
+                        .addGap(63, 63, 63)
+                        .addComponent(btnapagar)
+                        .addGap(61, 61, 61)
+                        .addComponent(btnlistar)))
+                .addContainerGap(102, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(260, 260, 260))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnvoltar)
-                .addGap(10, 10, 10)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(77, 77, 77)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(46, 46, 46)
+                .addGap(101, 101, 101)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,14 +130,14 @@ public class TelaPedido extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnsalvar)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnatualizar)
                         .addComponent(btnapagar)
                         .addComponent(btnlistar)))
-                .addGap(71, 71, 71))
+                .addGap(77, 77, 77))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,95 +156,106 @@ public class TelaPedido extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         try {
-        DTO.PedidoDTO pedido = new DTO.PedidoDTO();
-        DAO.PedidoDAO dao = new DAO.PedidoDAO();
+            DTO.PedidoDTO pedido = new DTO.PedidoDTO();
+            DAO.PedidoDAO dao = new DAO.PedidoDAO();
 
-        // Pede o ID do cliente
-        String idCliente = JOptionPane.showInputDialog("Digite o ID do cliente:");
-        pedido.setId_cliente(Integer.parseInt(idCliente));
+            // Pede o ID do cliente (ou você pode usar txtcliente se for o ID)
+            String idCliente = JOptionPane.showInputDialog("Digite o ID do cliente:");
+            pedido.setId_cliente(Integer.parseInt(idCliente));
 
-        // Converter a data de String para java.util.Date
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); // ou dd/MM/yyyy, dependendo do que você usa
-        Date data = (Date) formato.parse(txtdata.getText());
-        pedido.setData_pedido(data);
+            // Converter a data de String para java.util.Date (formato yyyy-MM-dd)
+            String textoData = txtdata.getText().trim();
+            if (textoData.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Informe a data (yyyy-MM-dd).");
+                return;
+            }
 
-        pedido.setValor_total(Double.parseDouble(txtvalor.getText()));
+            java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat("dd-MM-yyyy");
+            formato.setLenient(false); // valida estritamente a data
+            java.util.Date utilDate = formato.parse(textoData); // retorna java.util.Date
+            pedido.setData_pedido(utilDate); // seu DTO aceita java.util.Date
 
-        dao.cadastrarPedido(pedido); // método do DAO para salvar
-        JOptionPane.showMessageDialog(null, "Pedido cadastrado com sucesso!");
+            pedido.setValor_total(Double.parseDouble(txtvalor.getText()));
 
-        // Limpar campos
-        txtcliente.setText("");
-        txtdata.setText("");
-        txtvalor.setText("");
+            dao.cadastrarPedido(pedido); // no DAO você faz new java.sql.Date(pedido.getData_pedido().getTime())
+            JOptionPane.showMessageDialog(null, "Pedido cadastrado com sucesso!");
 
-    } catch(Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao salvar pedido: " + e.getMessage());
-    }
+            // Limpar campos
+            txtdata.setText("");
+            txtvalor.setText("");
+
+        } catch (java.text.ParseException pe) {
+            JOptionPane.showMessageDialog(this, "Formato de data inválido. Use yyyy-MM-dd.");
+        } catch (NumberFormatException ne) {
+            JOptionPane.showMessageDialog(this, "Valor inválido. Verifique o ID do cliente e o valor.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar pedido: " + e.getMessage());
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void btnatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnatualizarActionPerformed
-         try {
-        DTO.PedidoDTO pedido = new DTO.PedidoDTO();
-        DAO.PedidoDAO dao = new DAO.PedidoDAO();
+        try {
+            DTO.PedidoDTO pedido = new DTO.PedidoDTO();
+            DAO.PedidoDAO dao = new DAO.PedidoDAO();
 
-        // Pede o ID do pedido a atualizar
-        String idPedido = JOptionPane.showInputDialog("Digite o ID do pedido para atualizar:");
-        pedido.setId_pedido(Integer.parseInt(idPedido));
+            // Pede o ID do pedido a atualizar
+            String idPedido = JOptionPane.showInputDialog("Digite o ID do pedido para atualizar:");
+            pedido.setId_pedido(Integer.parseInt(idPedido));
 
-        String idCliente = JOptionPane.showInputDialog("Digite o ID do cliente:");
-        pedido.setId_cliente(Integer.parseInt(idCliente));
+            String idCliente = JOptionPane.showInputDialog("Digite o ID do cliente:");
+            pedido.setId_cliente(Integer.parseInt(idCliente));
 
-        // Converter a data de String para java.util.Date
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); // formato que você usa no banco
-             java.util.Date data = formato.parse(txtdata.getText());
-        pedido.setData_pedido((Date) data);
+            // Converter a data de String para java.util.Date
+            String textoData = txtdata.getText().trim();
+            if (textoData.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Informe a data (yyyy-MM-dd).");
+                return;
+            }
+            java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            formato.setLenient(false);
+            java.util.Date utilDate = formato.parse(textoData);
+            pedido.setData_pedido(utilDate);
 
-        pedido.setValor_total(Double.parseDouble(txtvalor.getText()));
+            pedido.setValor_total(Double.parseDouble(txtvalor.getText()));
 
-        dao.atualizarPedido(pedido);
-        JOptionPane.showMessageDialog(null, "Pedido atualizado com sucesso!");
+            dao.atualizarPedido(pedido);
+            JOptionPane.showMessageDialog(null, "Pedido atualizado com sucesso!");
 
-    } catch(Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao atualizar pedido: " + e.getMessage());
-    }
+        } catch (java.text.ParseException pe) {
+            JOptionPane.showMessageDialog(this, "Formato de data inválido. Use yyyy-MM-dd.");
+        } catch (NumberFormatException ne) {
+            JOptionPane.showMessageDialog(this, "Valor inválido. Verifique o ID do pedido/cliente e o valor.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar pedido: " + e.getMessage());
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnatualizarActionPerformed
 
     private void btnapagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnapagarActionPerformed
-         try {
-        DAO.PedidoDAO dao = new DAO.PedidoDAO();
-        String idPedido = JOptionPane.showInputDialog("Digite o ID do pedido para apagar:");
-        dao.apagarPedido(Integer.parseInt(idPedido));
-        JOptionPane.showMessageDialog(null, "Pedido apagado com sucesso!");
-    } catch(Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao apagar pedido: " + e.getMessage());
-    }
+        try {
+            DAO.PedidoDAO dao = new DAO.PedidoDAO();
+            String idPedido = JOptionPane.showInputDialog("Digite o ID do pedido para apagar:");
+            dao.apagarPedido(Integer.parseInt(idPedido));
+            JOptionPane.showMessageDialog(null, "Pedido apagado com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao apagar pedido: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnapagarActionPerformed
 
     private void btnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistarActionPerformed
-           try {
-        DAO.PedidoDAO dao = new DAO.PedidoDAO();
-        java.util.ArrayList<String> lista = dao.listarpedidos(); // agora é ArrayList<String>
-
-        String dados = "";
-        for(String p : lista) {
-            dados += p + "\n";
-        }
-
-        JOptionPane.showMessageDialog(null, dados, "Lista de Pedidos", JOptionPane.INFORMATION_MESSAGE);
-
-    } catch(Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao listar pedidos: " + e.getMessage());
-    }
+        this.dispose();
+        ListaPedidos objListaPedidos = new ListaPedidos();
+        objListaPedidos.setVisible(true);
     }//GEN-LAST:event_btnlistarActionPerformed
 
     private void btnvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvoltarActionPerformed
-         // Fecha a tela atual
-    this.dispose();
+        // Fecha a tela atual
+        this.dispose();
 
-    // Abre a TelaPrincipal
-    TelaPrincipal telaPrincipal = new TelaPrincipal();
-    telaPrincipal.setVisible(true);
+        // Abre a TelaPrincipal
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.setVisible(true);
     }//GEN-LAST:event_btnvoltarActionPerformed
 
     public static void main(String args[]) {
@@ -275,11 +274,9 @@ public class TelaPedido extends javax.swing.JFrame {
     private javax.swing.JButton btnsalvar;
     private javax.swing.JButton btnvoltar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtcliente;
     private javax.swing.JTextField txtdata;
     private javax.swing.JTextField txtvalor;
     // End of variables declaration//GEN-END:variables

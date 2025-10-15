@@ -1,4 +1,3 @@
-
 package VIEW;
 
 import javax.swing.JOptionPane;
@@ -178,83 +177,96 @@ public class TelaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-         try {
-        DTO.ClienteDTO objCliente = new DTO.ClienteDTO();
-        DAO.ClienteDAO objDAO = new DAO.ClienteDAO();
+        try {
+            DTO.ClienteDTO objCliente = new DTO.ClienteDTO();
+            DAO.ClienteDAO objDAO = new DAO.ClienteDAO();
 
-        objCliente.setNome(txtnome.getText());
-        objCliente.setTelefone(txttelefone.getText());
-        objCliente.setEmail(txtemail.getText());
+            // Preencher dados
+            objCliente.setNome(txtnome.getText());
+            objCliente.setTelefone(txttelefone.getText());
+            objCliente.setEmail(txtemail.getText());
 
-        objDAO.cadastrarCliente(objCliente); // método do DAO para salvar
-        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            objDAO.cadastrarCliente(objCliente); // Salvar no banco
 
-        // Limpar campos
-        txtnome.setText("");
-        txttelefone.setText("");
-        txtemail.setText("");
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
 
-    } catch(Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao salvar cliente: " + e.getMessage());
-    }
+            // Limpar campos
+            txtID.setText("");
+            txtnome.setText("");
+            txttelefone.setText("");
+            txtemail.setText("");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar cliente: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-         try {
-        DTO.ClienteDTO objCliente = new DTO.ClienteDTO();
-        DAO.ClienteDAO objDAO = new DAO.ClienteDAO();
+        try {
+            DTO.ClienteDTO objCliente = new DTO.ClienteDTO();
+            DAO.ClienteDAO objDAO = new DAO.ClienteDAO();
 
-        // Aqui você precisaria do ID do cliente para atualizar (pode pedir ou usar seleção da lista)
-        String id = JOptionPane.showInputDialog("Digite o ID do cliente para atualizar:");
-        objCliente.setId_cliente(Integer.parseInt(id));
+            // Pegar ID do cliente
+            int id = Integer.parseInt(txtID.getText());
+            objCliente.setId_cliente(id);
 
-        objCliente.setNome(txtnome.getText());
-        objCliente.setTelefone(txttelefone.getText());
-        objCliente.setEmail(txtemail.getText());
+            objCliente.setNome(txtnome.getText());
+            objCliente.setTelefone(txttelefone.getText());
+            objCliente.setEmail(txtemail.getText());
 
-        objDAO.atualizarCliente(objCliente);
-        JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
-    } catch(Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao atualizar cliente: " + e.getMessage());
-    }
+            objDAO.atualizarCliente(objCliente); // Atualizar no banco
+
+            JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
+
+            // Limpar campos
+            txtID.setText("");
+            txtnome.setText("");
+            txttelefone.setText("");
+            txtemail.setText("");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Informe um ID válido para atualizar!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar cliente: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-         try {
-        DAO.ClienteDAO objDAO = new DAO.ClienteDAO();
-        String id = JOptionPane.showInputDialog("Digite o ID do cliente para apagar:");
-        objDAO.excluirCliente(Integer.parseInt(id));
-        JOptionPane.showMessageDialog(null, "Cliente apagado com sucesso!");
-    } catch(Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao apagar cliente: " + e.getMessage());
-    }
+        try {
+            DAO.ClienteDAO objDAO = new DAO.ClienteDAO();
+
+            int id = Integer.parseInt(txtID.getText());
+            objDAO.excluirCliente(id);
+
+            JOptionPane.showMessageDialog(null, "Cliente apagado com sucesso!");
+
+            // Limpar campos
+            txtID.setText("");
+            txtnome.setText("");
+            txttelefone.setText("");
+            txtemail.setText("");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Informe um ID válido para apagar!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao apagar cliente: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        try {
-        DAO.ClienteDAO objDAO = new DAO.ClienteDAO();
-        java.util.ArrayList<DTO.ClienteDTO> lista = objDAO.listarClientes(); // método do DAO que retorna lista
 
-        String dados = "";
-        for(DTO.ClienteDTO c : lista) {
-            dados += "ID: " + c.getId_cliente() + " | Nome: " + c.getNome() +
-                     " | Telefone: " + c.getTelefone() + " | Email: " + c.getEmail() + "\n";
-        }
-
-        JOptionPane.showMessageDialog(null, dados, "Lista de Clientes", JOptionPane.INFORMATION_MESSAGE);
-
-    } catch(Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao listar clientes: " + e.getMessage());
-    }
+        this.dispose();
+        ListaCliente objListaCliente = new ListaCliente();
+        objListaCliente.setVisible(true);
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-         // Fecha a tela atual
-    this.dispose();
+        // Fecha a tela atual
+        this.dispose();
 
-    // Abre a TelaPrincipal
-    TelaPrincipal telaPrincipal = new TelaPrincipal();
-    telaPrincipal.setVisible(true);
+        // Abre a TelaPrincipal
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     public static void main(String args[]) {
